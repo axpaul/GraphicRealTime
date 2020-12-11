@@ -6,6 +6,10 @@
 #include <QtCore/QTimer>
 #include <QDebug>
 
+#include "controller.h"
+
+class Controller;
+
 QT_CHARTS_BEGIN_NAMESPACE
 class QSplineSeries;
 class QValueAxis;
@@ -18,10 +22,24 @@ class Graphic : public QChart
     Q_OBJECT
 
 public:
-    explicit Graphic(QChart *parent = nullptr);
+    Graphic(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = {});
+    ~Graphic();
 
+    void nameTitleLegend(QString title, QString axeX, QString axeY);
 
-signals:
+public slots:
+    void addPoint();
+
+private:
+    QSplineSeries *m_series;
+    QStringList m_titles;
+    QValueAxis *m_axisX;
+    QValueAxis *m_axisY;
+    qreal m_step;
+    qreal m_x;
+    qreal m_y;
+
+    Controller *m_controller;
 
 
 };
