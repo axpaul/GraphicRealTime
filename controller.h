@@ -17,9 +17,11 @@ public:
 
     void run() override;
 
-public slots:
-
 signals:
+    void newPoint();
+
+private:
+    int m_cout;
 
 };
 
