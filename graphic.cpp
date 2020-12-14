@@ -12,15 +12,17 @@ Graphic::Graphic(QGraphicsItem *parent, Qt::WindowFlags wFlags)
       m_axisX(new QValueAxis()),
       m_axisY(new QValueAxis()),
       m_step(0),
-      m_x(5),
-      m_y(1),
+      m_x(0),
+      m_y(0),
       m_controller(new Controller)
 {
     m_series = new QSplineSeries(this);
-    QPen green(Qt::red);
-    green.setWidth(3);
-    m_series->setPen(green);
+
+    QPen red(Qt::red);
+    colorLine(red);
+
     m_series->append(m_x, m_y);
+
 
     addSeries(m_series);
 
@@ -29,7 +31,7 @@ Graphic::Graphic(QGraphicsItem *parent, Qt::WindowFlags wFlags)
     m_series->attachAxis(m_axisX);
     m_series->attachAxis(m_axisY);
     m_axisX->setTickCount(5);
-    m_axisX->setRange(0, 10);
+    m_axisX->setRange(-5, 10);
     m_axisY->setRange(-5, 10);
 
     this->legend()->hide();
@@ -42,6 +44,8 @@ Graphic::Graphic(QGraphicsItem *parent, Qt::WindowFlags wFlags)
 }
 
 Graphic::~Graphic(){
+    m_controller->stopSystem();
+    while(m_controller->isRunning()){};
     delete m_controller;
 }
 
@@ -59,4 +63,10 @@ void Graphic::addPoint(){
     this->setTitle(title);
 
 }*/
+
+void Graphic::colorLine(QPen color)
+{
+    color.setWidth(3);
+    m_series->setPen(color);
+}
 

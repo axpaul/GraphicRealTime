@@ -6,11 +6,17 @@ Controller::~Controller(){}
 
 void Controller::run(){
 
+    m_stop = false;
 
-    for(m_cout = 0 ; m_cout < 1000 ; m_cout++)
+    while(m_stop != true)
     {
         emit newPoint();
         QThread::sleep(1);
     }
 
+}
+
+void Controller::stopSystem()
+{
+    m_stop = true;
 }

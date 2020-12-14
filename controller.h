@@ -17,11 +17,14 @@ public:
 
     void run() override;
 
+    void stopSystem();
+
 signals:
     void newPoint();
 
 private:
     int m_cout;
+    bool m_stop;
 
 };
 
