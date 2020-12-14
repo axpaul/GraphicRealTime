@@ -5,6 +5,7 @@
 #include <QtCharts/QChart>
 #include <QtCore/QTimer>
 #include <QDebug>
+#include <QDate>
 
 #include "controller.h"
 
@@ -26,6 +27,7 @@ public:
     ~Graphic();
 
     void nameTitleLegend(QString title, QString axeX, QString axeY);
+    void colorLine(QPen color);
 
 public slots:
     void addPoint();
@@ -40,6 +42,7 @@ private:
     qreal m_y;
 
     Controller *m_controller;
+    QDate m_timeActu;
 
 
 };
