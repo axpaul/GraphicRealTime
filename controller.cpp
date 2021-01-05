@@ -11,7 +11,7 @@ void Controller::run(){
     while(m_stop != true)
     {
         emit newPoint();
-        QThread::sleep(1);
+        QThread::sleep(QRandomGenerator::global()->bounded(1,1));
     }
 
 }

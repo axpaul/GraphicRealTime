@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QThread>
 #include <QDebug>
+#include <QtCore/QRandomGenerator>
 
 #include "graphic.h"
 
@@ -16,14 +17,12 @@ public:
     ~Controller();
 
     void run() override;
-
     void stopSystem();
 
 signals:
     void newPoint();
 
 private:
-    int m_cout;
     bool m_stop;
 
 };
