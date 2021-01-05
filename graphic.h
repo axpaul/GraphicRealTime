@@ -2,10 +2,21 @@
 #define GRAPHIC_H
 
 #include <QObject>
-#include <QtCharts/QChart>
-#include <QtCore/QTimer>
 #include <QDebug>
 #include <QDate>
+#include <QMutex>
+
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QSplineSeries>
+#include <QtCharts/QAbstractAxis>
+#include <QtCore/QRandomGenerator>
+
+#include <QtCore/QTimer>
+#include <QtCore/QDateTime>
+#include <QtCore/QDebug>
 
 #include "controller.h"
 
@@ -26,25 +37,18 @@ public:
     Graphic(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = {});
     ~Graphic();
 
-    void nameTitleLegend(QString title, QString axeX, QString axeY);
-    void colorLine(QPen color);
-
 public slots:
     void addPoint();
 
 private:
     QSplineSeries *m_series;
-    QStringList m_titles;
-    QValueAxis *m_axisX;
-    QValueAxis *m_axisY;
-    qreal m_step;
+    QDateTimeAxis *m_axisX;
+    QValueAxis *m_axisY;   
+    QDateTime *m_timeActu;
+    Controller *m_controller;
+    QMutex *m_mutex;
     qreal m_x;
     qreal m_y;
-
-    Controller *m_controller;
-    QDate m_timeActu;
-
-
 };
 
 #endif // GRAPHIC_H

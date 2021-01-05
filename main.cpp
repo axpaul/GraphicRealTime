@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     QChartView chartView(graphic);
     chartView.setRenderHint(QPainter::Antialiasing);
     window.setCentralWidget(&chartView);
-    window.resize(400, 300);
+    window.resize(600, 300);
     window.show();
     return a.exec();
 }
