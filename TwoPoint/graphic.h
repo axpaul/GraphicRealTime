@@ -32,15 +32,17 @@ public:
     ~Graphic();
 
 public slots:
-    void addPoint(qreal newPoint);
+    void addPoint(qreal pointA, qreal pointB);
 
 private:
     QSplineSeries *m_series;
     QValueAxis *m_axisX;
     QValueAxis *m_axisY;   
     QDateTime *m_timeActu;
+
     Controller *m_controller;
     QMutex *m_mutex;
+
     qreal m_x;
     qreal m_y;
 };
