@@ -20,7 +20,7 @@ public:
     void stopSystem();
 
 signals:
-    void newPoint(qreal newPoint);
+    void newPoint(qreal pointA, qreal pointB);
 
 private:
     bool m_stop;

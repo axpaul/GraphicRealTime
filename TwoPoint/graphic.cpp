@@ -55,8 +55,8 @@ Graphic::Graphic(QGraphicsItem *parent, Qt::WindowFlags wFlags)
 
     //  3.Connexion à la simulation thread
 
-    /*connect(m_controller, &Controller::newPoint, this, &Graphic::addPoint);
-    m_controller->start();*/
+    connect(m_controller, &Controller::newPoint, this, &Graphic::addPoint);
+    m_controller->start();
 }
 
 Graphic::~Graphic()
@@ -69,10 +69,13 @@ Graphic::~Graphic()
     delete m_axisY;
 }
 
-void Graphic::addPoint(qreal newPoint){
+void Graphic::addPoint(qreal pointA, qreal pointB){
 
     m_mutex->lock();
+    qreal x = plotArea().width() / m_axisX->tickCount();
+    m_series->append(pointB, pointA);
 
+    scroll(x, 0);
 
     m_mutex->unlock();
 
