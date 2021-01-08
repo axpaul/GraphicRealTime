@@ -11,7 +11,7 @@ void Controller::run(){
 
     while(m_stop != true)
     {
-        x = x + 1;
+        x = x + 1 + QRandomGenerator::global()->bounded(5.0);
         emit newPoint(QRandomGenerator::global()->bounded(5) - 2.5, x);
         //QThread::sleep(QRandomGenerator::global()->bounded(1,1));
         QThread::sleep(1);

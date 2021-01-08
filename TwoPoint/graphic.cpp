@@ -1,5 +1,3 @@
-
-
 #include <QtCharts/QValueAxis>
 
 #include <QtCore/QDebug>
@@ -38,17 +36,17 @@ Graphic::Graphic(QGraphicsItem *parent, Qt::WindowFlags wFlags)
 
         // 1.Format axe X
 
-    m_axisX->setTickCount(10);
+    m_axisX->setTickCount(5);
     m_axisX->setLabelFormat("%i");
-    m_axisX->setTitleText("Point A");
+    m_axisX->setTitleText("Point B");
     addAxis(m_axisX,Qt::AlignBottom);
     m_series->attachAxis(m_axisX);
-    m_axisX->setRange(-5, 5);
+    m_axisX->setRange(0, 10);
 
         // 2.Format axe Y
 
     m_axisY->setLabelFormat("%i");
-    m_axisY->setTitleText("Point B");
+    m_axisY->setTitleText("Point A");
     addAxis(m_axisY,Qt::AlignLeft);
     m_series->attachAxis(m_axisY);
     m_axisY->setRange(-5, 5);
@@ -69,16 +67,35 @@ Graphic::~Graphic()
     delete m_axisY;
 }
 
-void Graphic::addPoint(qreal pointA, qreal pointB){
-
+void Graphic::addPoint(qreal pointA, qreal pointB)
+{
     m_mutex->lock();
-    qreal x = plotArea().width() / m_axisX->tickCount();
+
+    //qreal x = plotArea().width() / m_axisX->tickCount();
+
+    qDebug() << "Max :" << m_axisX->max() << " Min : " << m_axisX->min() << Qt::endl;
+
+    m_middlePos = (m_axisX->max() - m_axisX->min())/2;
+
+    if (m_middlePos < (pointB - m_axisX->min()))
+    {
+        m_recalDist = ((pointB - m_axisX->min()) - m_middlePos);
+        m_xDepalce = (plotArea().width() * m_recalDist) / (m_axisX->max() - m_axisX->min());
+    }
+    else
+    {
+        m_xDepalce = 0;
+    }
+
     m_series->append(pointB, pointA);
 
-    scroll(x, 0);
+    if (m_xDepalce != 0)
+    {
+        scroll(m_xDepalce, 0);
+    }
+
 
     m_mutex->unlock();
-
 }
 
 
