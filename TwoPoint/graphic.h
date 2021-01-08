@@ -45,6 +45,11 @@ private:
 
     qreal m_x;
     qreal m_y;
+
+    qreal m_middlePos;
+    qreal m_recalDist;
+    qreal m_xDepalce;
+
 };
 
 #endif // GRAPHIC_H
