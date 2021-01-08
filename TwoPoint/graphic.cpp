@@ -41,7 +41,7 @@ Graphic::Graphic(QGraphicsItem *parent, Qt::WindowFlags wFlags)
     m_axisX->setTitleText("Point B");
     addAxis(m_axisX,Qt::AlignBottom);
     m_series->attachAxis(m_axisX);
-    m_axisX->setRange(0, 10);
+    m_axisX->setRange(0, 50);
 
         // 2.Format axe Y
 
@@ -73,7 +73,7 @@ void Graphic::addPoint(qreal pointA, qreal pointB)
 
     //qreal x = plotArea().width() / m_axisX->tickCount();
 
-    qDebug() << "Max :" << m_axisX->max() << " Min : " << m_axisX->min() << Qt::endl;
+    //qDebug() << "Max :" << m_axisX->max() << " Min : " << m_axisX->min() << Qt::endl;
 
     m_middlePos = (m_axisX->max() - m_axisX->min())/2;
 
@@ -93,7 +93,6 @@ void Graphic::addPoint(qreal pointA, qreal pointB)
     {
         scroll(m_xDepalce, 0);
     }
-
 
     m_mutex->unlock();
 }
