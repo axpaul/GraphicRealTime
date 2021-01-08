@@ -2,7 +2,7 @@
         
 <h2>GraphicRealTime : Class to create real-time graphics on Qt using QThread technology</h2>
 
-<p>*Copyright (c) CNES and contributors. All rights reserved.*<p>
+*Copyright (c) CNES and contributors. All rights reserved.*
 
 <p>For different Qt projects, it is interesting to be able to create and use graphs when we want to do monitoring. 
  Here in the different codes I provide you can find some examples of graphs. 
