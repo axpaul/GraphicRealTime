@@ -7,6 +7,6 @@
 <p>To be able to control a measuring bench using the GRBL system, I wrote a serial class that allows to send commands to manage the movement. 
         Attention, I do not manage the reading, being messages of non-fixed sizes it would be necessary to remodel the whole code to be able to read.</p>
         
-        - class MainWindow : Manages the display and user signals.
-        - Class SerialPort : Class managing the serial port and sending messages using another thread than the main one
+        - Branch AxisTime : Graph plotting the points received by another thread as a function of time.
+        - Branch TwoAxes : Graph created from two data sets, they are transmitted using another thread.
 
